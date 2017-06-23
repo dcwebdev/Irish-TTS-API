@@ -16,7 +16,8 @@ if(!isset($_GET['s']))
 }
 
 //TODO: convert output file to mp3
-$stringToRead = escapeshellcmd($_GET['s']); //use spaces, not underscores, %20s, etc.
+setlocale(LC_ALL, "en_US.UTF-8"); //prevents escapeshellarg() from dropping áéíóú
+$stringToRead = escapeshellarg($_GET['s']); //use spaces, not underscores, %20s, etc.
 $lang = escapeshellcmd($_GET['lang']); //uses the two letter language code
 
 if(validate($lang) == 1)
@@ -27,8 +28,7 @@ if(validate($lang) == 1)
     header("Content-Disposition:attachment; filename=".$stringToRead.".wav");
     chdir("command_line");
 
-    //why does it still read the string? the -w flag means it should be silent
-    $cmd = "espeak -v".$lang . " \"" . $stringToRead . "\""; //espeak -vga "stringtoread"
+    $cmd = "espeak -vga \"{$stringToRead}\" --stdout"; //espeak -vga "stringtoread" --stdout
     passthru($cmd); //sends the data in response to the get request
     chdir("..");
 }
