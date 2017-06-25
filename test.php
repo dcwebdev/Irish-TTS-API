@@ -7,7 +7,7 @@
  */
 $string = $_GET['s'];
 $lang = $_GET['lang'] ?? "ga";
-$url = "127.0.0.1/irishttsapi/api.php?s={$string}&lang={$lang}";
+$url = "http://67.207.83.164/IrishTTSAPI/api.php?s={$string}&lang={$lang}";
 
 $curl = curl_init(); //url can also be given as a param here
 curl_setopt($curl,CURLOPT_URL,$url);  //needs an absolute url
