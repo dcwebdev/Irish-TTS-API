@@ -20,7 +20,7 @@ setlocale(LC_ALL, "en_US.UTF-8"); //prevents escapeshellarg() from dropping áé
 $stringToRead = escapeshellarg($_GET['s']); //use spaces, not underscores, %20s, etc.
 $lang = escapeshellcmd($_GET['lang']); //uses the two letter language code
 
-if(validate($lang) == 1)
+if(validate($lang))
 {
     $stringToRead = str_replace(" ", "_", $stringToRead);
 
@@ -39,16 +39,10 @@ else
 
 function validate($lang)
 {
-    $returnString = "";
     if($lang != "ga")
     {
-        $returnString .= "Invalid lang code. ";
+        return false;
     }
 
-    if($returnString == "")
-    {
-        return 1;
-    }
-
-    return $returnString;
+    return true;
 }
