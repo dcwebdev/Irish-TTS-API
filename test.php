@@ -15,6 +15,6 @@ curl_setopt($curl,CURLOPT_RETURNTRANSFER,true); //request returns false if error
 $result = curl_exec($curl);
 
 header("Content-Type: audio/wav");
-var_dump($result);
+echo $result;
 curl_close($curl);
 ?>
