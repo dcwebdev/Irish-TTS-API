@@ -14,5 +14,7 @@ curl_setopt($curl,CURLOPT_URL,$url);  //needs an absolute url
 curl_setopt($curl,CURLOPT_RETURNTRANSFER,true); //request returns false if error or a result if successful
 $result = curl_exec($curl);
 
+header("Content-Type: audio/wav");
+var_dump($result);
 curl_close($curl);
 ?>
